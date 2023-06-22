@@ -11,7 +11,7 @@ class MovieDetailsMovieDb {
   String originalTitle;
   String overview;
   double popularity;
-  String posterPath;
+  String? posterPath;
   List<ProductionCompany> productionCompanies;
   List<ProductionCountry> productionCountries;
   DateTime releaseDate;
@@ -93,8 +93,8 @@ class MovieDetailsMovieDb {
 class BelongsToCollection {
   int id;
   String name;
-  String posterPath;
-  String backdropPath;
+  String? posterPath;
+  String? backdropPath;
 
   BelongsToCollection({
     required this.id,
@@ -155,7 +155,7 @@ class ProductionCompany {
   factory ProductionCompany.fromJson(Map<String, dynamic> json) =>
       ProductionCompany(
         id: json["id"],
-        logoPath: json["logo_path"],
+        logoPath: json["logo_path"] ?? 'no-logo',
         name: json["name"],
         originCountry: json["origin_country"],
       );
