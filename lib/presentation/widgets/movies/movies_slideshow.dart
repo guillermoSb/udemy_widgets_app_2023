@@ -2,6 +2,7 @@ import 'package:animate_do/animate_do.dart';
 import 'package:card_swiper/card_swiper.dart';
 import 'package:cinemapedia/domain/entities/movie.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class MoviesSlideshow extends StatelessWidget {
   final List<Movie> movies;
@@ -52,24 +53,29 @@ class _Slide extends StatelessWidget {
       ],
     );
 
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 30),
-      child: DecoratedBox(
-        decoration: decoration,
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(20),
-          child: Image.network(
-            movie.backdropPath,
-            fit: BoxFit.cover,
-            loadingBuilder: (context, child, loadingProgress) {
-              if (loadingProgress == null) {
-                return FadeIn(
-                    child: child); // Loading is done, return the image
-              }
-              return const DecoratedBox(
-                decoration: BoxDecoration(color: Colors.black12),
-              );
-            },
+    return GestureDetector(
+      onTap: () {
+        context.push('/movie/${movie.id}');
+      },
+      child: Padding(
+        padding: const EdgeInsets.only(bottom: 30),
+        child: DecoratedBox(
+          decoration: decoration,
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(20),
+            child: Image.network(
+              movie.backdropPath,
+              fit: BoxFit.cover,
+              loadingBuilder: (context, child, loadingProgress) {
+                if (loadingProgress == null) {
+                  return FadeIn(
+                      child: child); // Loading is done, return the image
+                }
+                return const DecoratedBox(
+                  decoration: BoxDecoration(color: Colors.black12),
+                );
+              },
+            ),
           ),
         ),
       ),
