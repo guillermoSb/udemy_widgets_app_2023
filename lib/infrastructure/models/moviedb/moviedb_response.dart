@@ -24,14 +24,6 @@ class MovieDbResponse {
         totalPages: json["total_pages"],
         totalResults: json["total_results"],
       );
-
-  Map<String, dynamic> toJson() => {
-        "dates": dates?.toJson(),
-        "page": page,
-        "results": List<dynamic>.from(results.map((x) => x.toJson())),
-        "total_pages": totalPages,
-        "total_results": totalResults,
-      };
 }
 
 class Dates {
